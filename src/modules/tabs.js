@@ -17,7 +17,7 @@ const tabs = () => {
                     tab.classList.remove("active");
                     tabContent[index].classList.add("d-none");
                 }
-            })
+            });
         }
     });
 
