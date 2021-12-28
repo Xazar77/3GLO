@@ -5,13 +5,20 @@ const auth = () => {
         userEmail = document.querySelectorAll('[name=user_email]'),
         userPhone = document.querySelectorAll('[name=user_phone]'),
         userMessage = document.querySelector('[name=user_message]');
-        // console.log(userForm);
-          
+       
+        
 
-    userEmail.forEach(item => {
-        item.addEventListener('input', (e) => {
+    userEmail.forEach(email => {
+        email.addEventListener('blur', (e) => {
+
+            let testEmail = /^[^a-z0-9!*.\-_~'@]+/i;
+            if (testEmail.test(e.target.value) === false){
+                e.target.value = e.target.value.replace(/[^-a-zA-Z0-9!*.-~'@]/g, '');
+            } else {
+                e.target.value = e.target.value.replace(/[^-a-zA-Z0-9!*.-~'@]/g, '');
+                e.target.value = e.target.value.replace(/^[^-a-zA-Z0-9!*.-~'@]/g, '');
+            } 
             
-             e.target.value = e.target.value.match(/^[a-z0-9!*.\-_~'@]+/i);
         
         });
     });
@@ -23,67 +30,36 @@ const auth = () => {
        
     });
      userName.forEach(name => {
-        name.addEventListener('input', (e) => {
-
-            e.target.value = e.target.value.match(/^[а-яё -]+/gi);
+        name.addEventListener('blur', (e) => {
+                
+            let testText = /^[^-a-zA-Z0-9!*.-~'@]+/g;
+            if(testText.test(e.target.value) === false) {
+                let a = e.target.value.replace(/^ +/gm, '').replace(/^-+/gm, '').slice(0, 1).toUpperCase(0);
+                let b = e.target.value.slice(1).toLowerCase(0).replace(/[^а-яё]+/gi, '').replace(/\s+/g, ' ').replace(/-+/g, '-');
+                e.target.value = a + b;
+            } else {
+                let c = e.target.value.replace(/[^а-яё]+/gi, '').slice(0, 1).toUpperCase(0);
+                let d = e.target.value.slice(1).toLowerCase(0).replace(/[a-z]/gi, '').replace(/\s+/g, ' ').replace(/-+/g, '-').replace(/[^а-яё-\s]+/gi, '');
+                e.target.value = c + d;
+            }
         });
      });
 
     userPhone.forEach(phone => {
-        phone.addEventListener('input', (e) => {
-         e.target.value = e.target.value.match(/^[0-9()-]+/gi);
+        phone.addEventListener('blur', (e) => {
+            let testPhone = /^[^0-9()-]+/gi;
+            if (testPhone.test(e.target.value) === false) {
+                e.target.value = e.target.value.replace(/[^0-9()-]+/g, '');
+            } else {
+                e.target.value = e.target.value.replace(/[^0-9()-]/g, '');
+            }
+            
         });
 
     });
 
-    // userName.forEach(nameText => () => {
-    //     console.log(nameText)
-    //     name.addEventListener('blur', (e) => {
-            
-    //         // let testName = /[^а-яё -]+/gi;
-    //         // if(testName.test(name.value) === false) {
-    //         //     e.target.value = e.target.value.replace(/^ +/gm, '') .replace(/^-+/gm, '').slice(0, 1).toUpperCase(0)+ e.target.value.slice(1).toLowerCase(0).replace(/[^а-я]+/gi, '').replace(/\s+/g, ' ').replace(/-+/g, '-');
-    //         // } else {
-    //         //     e.target.value = e.target.value.replace(/[^а-я]+/gi, '').slice(0, 1).toUpperCase(0) + e.target.value.slice(1).toLowerCase(0).replace(/[a-zA-Z]/gi, '').replace(/\s+/g, ' ').replace(/-+/g, '-').replace(/[^а-я-\s]+/gi, '');
-    //         // }
-    // //         console.log(e.target);
-    //     });
-
-    // });
-
-
-    //      inputTextItem.addEventListener('blur', (e) => {
-    //         let testText = /[^а-я-\s]+/gi;
-    //         if(testText.test(inputTextItem.value) === false){
-    //             inputTextItem.value = inputTextItem.value.replace(/^ +/gm, '') .replace(/^-+/gm, '') /.slice(0, 1).toUpperCase(0) + inputTextItem.value.slice(1).toLowerCase(0).replace(/[^а-яА-я]+/gi, '').replace(/\s+/g, ' ').replace(/-+/g, '-');
-
-    //         }  else {
-    //             inputTextItem.value = inputTextItem.value.replace(/[^а-яА-я]+/gi, '').slice(0, 1).toUpperCase(0) + inputTextItem.value.slice(1).toLowerCase(0).replace(/[a-zA-Z]/gi, '').replace(/\s+/g, ' ').replace(/-+/g, '-').replace(/[^а-яА-я-\s]+/gi, '');
-    //         } 
-    //     });
-    // });
-    // emailForm.forEach(emailItem => {
-    //     emailItem.addEventListener('blur', () => {
-    //         let testEmail = /^[^-a-zA-Z0-9!*.-~'@]+/gim;
-    //         if(testEmail.test(emailItem.value) === false){
-    //             emailItem.value = emailItem.value.replace(/[^-a-zA-Z0-9!*.-~'@]/g, '');
-    //         }  else {
-    //             emailItem.value = emailItem.value.replace(/[^-a-zA-Z0-9!*.-~'@]/g, '');
-    //             emailItem.value = emailItem.value.replace(/^[^-a-zA-Z0-9!*.-~'@]/g, '');
-    //         } 
-    //     });
-    // });
-
-    // telForm.forEach(telItem => {
-    //     telItem.addEventListener('blur', () => {
-    //         let testTel = /^[^0-9()-]+/gi;
-    //         if(testTel.test(telItem.value) === false){
-    //             telItem.value = telItem.value/ .replace(/[^0-9()-]+/gi, ''); */
-    //         } else {
-    //             telItem.value = telItem.value.replace(/[^0-9()-]/gi, '');
-    //         }
-    //     });
-
+  
+    
 
 };
 
