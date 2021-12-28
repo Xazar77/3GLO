@@ -14,4 +14,4 @@ modal();
 calc();
 auth();
 tabs();
-slider();
+slider('.portfolio-item', '.portfolio-dots');
