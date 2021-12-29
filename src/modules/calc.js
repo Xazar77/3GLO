@@ -89,15 +89,7 @@ const calc = (price = 100) => {
             console.log(totalValue);
         };
     });
-     calcBlock.addEventListener('focus', (e) => {
-         if (e.target === calcType || e.target === calcSquare ||
-             e.target === calcCount || e.target === calcDay) {
-             clearInterval(interval);
-             }
-
-     });
-
-
+     
 
 };
 
