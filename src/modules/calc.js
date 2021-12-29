@@ -67,16 +67,17 @@ const calc = (price = 100) => {
                 
                 countCalc();
             
-                 const time = 3000; // время отводимое на перебор цифр
-                 const step = 500; // шаг перебора
+                 const time = 30000; // время отводимое на перебор цифр
+                 const step = 100; // шаг перебора
                  let n = 0; // число отсчитывается от нуля
                  let t = Math.round(time / +totalValue / step);
 
                  if (totalValue != 0) {
                     interval = setInterval(() => {
                         n += step;
-                        if (n === totalValue) {
+                        if (n === totalValue || n > totalValue) {
                             clearInterval(interval);
+                            n = totalValue;
                         }
                         total.textContent = n;
                     }, t);
@@ -88,17 +89,13 @@ const calc = (price = 100) => {
             console.log(totalValue);
         };
     });
+     calcBlock.addEventListener('focus', (e) => {
+         if (e.target === calcType || e.target === calcSquare ||
+             e.target === calcCount || e.target === calcDay) {
+             clearInterval(interval);
+             }
 
-
-
-
-
-    
-
-
-
-
-
+     });
 
 
 
