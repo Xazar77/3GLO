@@ -11,6 +11,7 @@ const calc = (price = 100) => {
           total = document.getElementById('total');
 
     let interval;
+    let totalValue = 0;
 
     const checkInput = (input) => {
         input.addEventListener('input', (e) => {
@@ -22,22 +23,9 @@ const calc = (price = 100) => {
     checkInput(calcDay);
 
 
-    // const outNum = (num) => {
-    //     const total = document.getElementById('total');
-    //     const time = 3000; // время отводимое на перебор цифр
-    //     const step = 1; // шаг перебора
-    //     let n = 0; // число отсчитывается от нуля
-    //     let t = Math.round(time / (num / step));
-    //     interval = setInterval(() => {
-    //         n += step;
-    //         if (n == num) {
-    //             clearInterval(interval);
-    //         }
-    //         total.textContent = n;
-    //     }, t);
-    // };
+ 
     
-    let totalValue = 0;
+    
     const countCalc = () => {
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
         const calcSquareValue = calcSquare.value;
@@ -49,22 +37,25 @@ const calc = (price = 100) => {
         
         if (calcCount.value > 1) {
             calcCountValue += +calcCount.value / 10;
+            
         }
 
         if (calcDay.value && calcDay.value < 5) {
             calcDayValue = 2;
+            
         } else if (calcDay.value && calcDay.value < 10) {
             calcDayValue = 1.5;
+            
         } 
 
         if (calcTypeValue && calcSquareValue) {
             totalValue = +(price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue);
+            
         } else {
             totalValue = 0;
         }
         return totalValue;
-        // outNum(totalValue);
-    //    total.textContent = +totalValue;
+        
     };
    
 
@@ -72,10 +63,12 @@ const calc = (price = 100) => {
     calcBlock.addEventListener('change', (e) => {
         if (e.target === calcType || e.target === calcSquare ||
             e.target === calcCount || e.target === calcDay) {
-            countCalc();
+                clearInterval(interval);
+                
+                countCalc();
             
                  const time = 3000; // время отводимое на перебор цифр
-                 const step = 20; // шаг перебора
+                 const step = 500; // шаг перебора
                  let n = 0; // число отсчитывается от нуля
                  let t = Math.round(time / +totalValue / step);
 
@@ -88,12 +81,14 @@ const calc = (price = 100) => {
                         total.textContent = n;
                     }, t);
                  }
+               
+                
                  
-                // outNum(totalValue);
             
             console.log(totalValue);
         };
     });
+
 
 
 
