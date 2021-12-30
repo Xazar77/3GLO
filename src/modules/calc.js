@@ -1,4 +1,6 @@
 
+import { animate } from "./helpers";
+
 
 const calc = (price = 100) => {
 
@@ -63,25 +65,30 @@ const calc = (price = 100) => {
     calcBlock.addEventListener('change', (e) => {
         if (e.target === calcType || e.target === calcSquare ||
             e.target === calcCount || e.target === calcDay) {
-                clearInterval(interval);
+                // clearInterval(interval);
+                clearTimeout(interval);
                 
                 countCalc();
             
-                 const time = 30000; // время отводимое на перебор цифр
-                 const step = 100; // шаг перебора
-                 let n = 0; // число отсчитывается от нуля
-                 let t = Math.round(time / +totalValue / step);
+                const time = 3000; // время отводимое на перебор цифр
+                const step = 100; // шаг перебора
+                let n = 0; // число отсчитывается от нуля
+                let t = Math.round(time / +totalValue / step);
 
-                 if (totalValue != 0) {
-                    interval = setInterval(() => {
-                        n += step;
-                        if (n === totalValue || n > totalValue) {
-                            clearInterval(interval);
-                            n = totalValue;
-                        }
-                        total.textContent = n;
-                    }, t);
-                 }
+                if (totalValue != 0) {
+                  
+                    interval = setTimeout(() => {
+                        animate({
+                            duration: 1000,
+                            timing(timeFraction) {
+                                return timeFraction;
+                            },
+                            draw(progress) {
+                               total.textContent = Math.round(progress * totalValue);
+                            }
+                        });
+                    },200);
+                }
                
                 
                  

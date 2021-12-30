@@ -1,4 +1,6 @@
 
+import { animate } from "./helpers";
+
 const modal = () => {
 
     const button = document.querySelectorAll('.popup-btn'),
@@ -22,10 +24,18 @@ const modal = () => {
                 modal.style.opacity = '0';
                 modal.style.display = 'block';
                 setTimeout(() => {
-                modal.style.opacity = '1';
-                modal.style.transition = '.9s all';
-            }, 200);
-            }
+                animate({
+                    duration: 1000,
+                    timing(timeFraction) {
+                        return timeFraction;
+                    },
+                    draw(progress) {
+                        modal.style.opacity = progress;
+                    }
+                });
+            },200);
+        }
+
 
         });
         
