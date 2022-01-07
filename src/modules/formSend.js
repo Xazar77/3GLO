@@ -13,6 +13,7 @@ const formSend = ({formId1,someElement1 = []}, {formId2,someElement2 = []}, {for
          loadText = 'Загрузка...',
          errorText = 'Ошибка...',
          successText = 'Спасибо! Наш менеджер свами свяжется!';
+         statusBlock.style.color = 'yellow';
        
        
 
