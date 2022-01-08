@@ -153,14 +153,6 @@ const formSend = ({
                 mmess = input.closest('[name=user_message]');
                 mmess = mmess.value;
             }
-            // console.log(input.value)
-            // if (input.value == '') {
-            //     success = false;
-
-
-
-            // }
-
 
         });
         //   console.log(eemail);
@@ -252,6 +244,7 @@ const formSend = ({
 
 
             alert('Данные не валидны!!!!');
+            statusBlock.textContent = errorText;
         }
     };
     const formListener = (form, someElement) => {
