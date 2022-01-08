@@ -64,9 +64,9 @@ const formSend = ({
 
                 if (testText.test(e.target.value)) {
 
-                    name.value = e.target.value[0].toUpperCase().trim() + e.target.value.slice(1).trim();
+                    name.value = e.target.value.replace(/^[\-\s]+/gm, '').replace(/[\-\s]+$/gm, '')[0].toUpperCase() + e.target.value.slice(1).replace(/^[\-\s]+/gm, '').replace(/[\-\s]+$/gm, '');
                 } else {
-                    name.value = e.target.value.replace(/[^а-яё\- ]+/gi, '')[0].toUpperCase().trim() + e.target.value.replace(/[^а-яё\- ]+/gi, '').slice(1).trim();
+                    name.value = e.target.value.replace(/[^а-яё\- ]+/gi, '')[0].toUpperCase().replace(/^[\-\s]+/gm, '').replace(/[\-\s]+$/gm, '') + e.target.value.replace(/[^а-яё\- ]+/gi, '').slice(1).replace(/^[\-\s]+/gm, '').replace(/[\-\s]+$/gm, '');
 
                 }
 
@@ -94,10 +94,10 @@ const formSend = ({
     };
 
 
-    // validEmail(userEmails);
-    // validMessage();
-    // validName(userNames);
-    // validPhone(userPhones);
+    validEmail(userEmails);
+    validMessage();
+    validName(userNames);
+    validPhone(userPhones);
 
 
 
@@ -171,14 +171,14 @@ const formSend = ({
         //   console.log(pphohe);
         pphone1 = testPhone.test(pphohe);
         //   console.log(pphone1);
-        console.log(ttext1 && pphone1);
+        // console.log(ttext1 && pphone1);
 
 
 
         //  mmess1 = testMessage.test(mmess);
         //  console.log(mmess1);
 
-        console.log(mmess === undefined);
+        // console.log(mmess === undefined);
 
         if (ttext == '' || eemail == '' || pphohe == '' || mmess == '') {
             success = false;
