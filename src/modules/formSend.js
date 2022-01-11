@@ -1,13 +1,4 @@
-const formSend = ({
-    formId1,
-    someElement1 = []
-}, {
-    formId2,
-    someElement2 = []
-}, {
-    formId3,
-    someElement3 = []
-}) => {
+const formSend = ({formId1, someElement1 = []}, {formId2, someElement2 = []}, {formId3, someElement3 = []}) => {
 
     const form1 = document.getElementById(formId1),
         form2 = document.getElementById(formId2),
@@ -18,11 +9,19 @@ const formSend = ({
         userMessage = document.querySelector('[name=user_message]');
 
     const statusBlock = document.createElement('div'),
-        loadText = 'Загрузка...',
+        statusImg = document.createElement('img');
+    const loadText = 'images/oval.svg',
         errorText = 'Ошибка...',
         successText = 'Спасибо! Наш менеджер свами свяжется!';
     statusBlock.style.color = 'yellow';
-
+        
+        statusImg.style.cssText = `
+            color: yellow;
+            display: block;
+            margin: 0 auto;
+            text-align:center;
+    `;
+        
 
 
 
@@ -37,7 +36,7 @@ const formSend = ({
                 if (testEmail.test(e.target.value)) {
                     email.value = e.target.value;
                 } else {
-                    email.value = e.target.value.replace(/[а-яё]+/gi, '').replace(/@+/g, '@').replace(/^[\-\s]+/g, '').replace(/[\-\s]+$/g, '')
+                    email.value = e.target.value.replace(/[а-яё]+/gi, '').replace(/@+/g, '@').replace(/^[\-\s]+/g, '').replace(/[\-\s]+$/g, '');
 
                 }
 
@@ -206,7 +205,9 @@ const formSend = ({
         const formData = new FormData(form);
         const formBody = {};
 
-        statusBlock.textContent = loadText;
+        
+        statusImg.src = loadText;
+        form.append(statusImg);
         form.append(statusBlock);
 
 
@@ -231,10 +232,13 @@ const formSend = ({
             sendData(formBody)
                 .then(data => {
                     statusBlock.textContent = successText;
-
+                    statusImg.src = '';
+                   
                     formElements.forEach(input => {
                         input.value = '';
+                        
                     });
+                    
                 })
                 .catch(error => {
                     statusBlock.textContent = errorText;
@@ -245,8 +249,11 @@ const formSend = ({
 
             alert('Данные не валидны!!!!');
             statusBlock.textContent = errorText;
+            statusImg.src = '';
         }
     };
+
+    
     const formListener = (form, someElement) => {
         try {
             if (!form) {
@@ -254,7 +261,7 @@ const formSend = ({
             }
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-
+                statusBlock.textContent = '';
                 submitForm(form, someElement);
 
 
