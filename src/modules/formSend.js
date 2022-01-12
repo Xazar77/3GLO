@@ -65,7 +65,7 @@ const formSend = ({formId1, someElement1 = []}, {formId2, someElement2 = []}, {f
 
                     name.value = e.target.value.replace(/^[\-\s]+/gm, '').replace(/[\-\s]+$/gm, '')[0].toUpperCase() + e.target.value.slice(1).replace(/^[\-\s]+/gm, '').replace(/[\-\s]+$/gm, '');
                 } else {
-                    name.value = e.target.value.replace(/[^а-яё\- ]+/gi, '')[0].toUpperCase().replace(/^[\-\s]+/gm, '').replace(/[\-\s]+$/gm, '') + e.target.value.replace(/[^а-яё\- ]+/gi, '').slice(1).replace(/^[\-\s]+/gm, '').replace(/[\-\s]+$/gm, '');
+                    name.value = e.target.value.replace(/[^а-яё\- ]+/gi, '').replace(/^[\-\s]+/gm, '').replace(/[\-\s]+$/gm, '') + e.target.value.replace(/[^а-яё\- ]+/gi, '').replace(/^[\-\s]+/gm, '').replace(/[\-\s]+$/gm, '');
 
                 }
 
@@ -128,7 +128,7 @@ const formSend = ({formId1, someElement1 = []}, {formId2, someElement2 = []}, {f
         let pphone1;
 
         let mmess;
-        //  let mmess1;
+        
 
 
 
@@ -172,19 +172,18 @@ const formSend = ({formId1, someElement1 = []}, {formId2, someElement2 = []}, {f
         // console.log(mmess === undefined);
 
         if (ttext == '' || eemail == '' || pphohe == '' || mmess == '') {
-            success = false;
-            console.log('OCHKO');
+            // success = false;
             alert('Заполните все поля!!!');
         }
         if (mmess === undefined && ttext1 && pphone1) {
 
             success = true;
-            console.log('YES');
+            // console.log('YES');
 
         } else if (mmess && testMessage.test(mmess) && ttext1 && pphone1) {
 
             success = true;
-            console.log('YES MM1');
+            // console.log('YES MM1');
         }
 
         return success;
@@ -248,8 +247,8 @@ const formSend = ({formId1, someElement1 = []}, {formId2, someElement2 = []}, {f
 
 
             alert('Данные не валидны!!!!');
-            statusBlock.textContent = errorText;
-            statusImg.src = '';
+            // statusBlock.textContent = errorText;
+            // statusImg.src = '';
         }
     };
 
